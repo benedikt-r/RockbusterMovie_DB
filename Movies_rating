@@ -1,0 +1,12 @@
+Best Movies / Worst Movies
+
+
+SELECT FILM.film_id, FILM.title,
+       SUM(PAYMENT.amount) AS REVENUE
+FROM FILM
+INNER JOIN INVENTORY ON FILM.film_id = INVENTORY.film_id
+INNER JOIN RENTAL ON INVENTORY.inventory_id = RENTAL.inventory_id
+INNER JOIN PAYMENT ON RENTAL.rental_id = PAYMENT.rental_id
+GROUP BY FILM.film_id, FILM.title
+ORDER BY REVENUE DESC
+LIMIT 959;
